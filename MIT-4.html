@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIT_4</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .container {
+            height: 100vh;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            color: black;
+            padding: 20px;
+        }
+
+        input {
+            height: 20px;
+            width: 70%;
+        }
+        .user-box {
+            border: 1px solid white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .user-box span {
+            margin-right: 10px;
+        }
+        .delete-btn {
+            background: rgb(255, 77, 77);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .delete-btn:hover {
+            background: rgb(255, 26, 26);
+        }
+    </style>
+</head>
+<body>
+    <h2>CONTACT MANAGER</h2>
+    <div class="container">
+
+        <form id="userForm">
+            <div>
+                <label for="name">Name</label><br>
+                <input type="text" id="name" required>
+            </div>
+            <div>
+                <label for="email">Email</label><br>
+                <input type="email" id="email" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="userList"></div>
+    </div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+           
+            const userBox = document.createElement('div');
+            userBox.className = 'user-box';
+
+            
+            const userInfo = document.createElement('span');
+            userInfo.textContent = `Name: ${name}, Email: ${email}`;
+            userBox.appendChild(userInfo);
+
+            
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.addEventListener('click', function() {
+                userBox.remove();
+            });
+
+            userBox.appendChild(deleteBtn);
+
+            
+            document.getElementById('userList').appendChild(userBox);
+
+            
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+        });
+    </script>
+</body>
+</html>
